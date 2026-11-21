@@ -1,13 +1,13 @@
-# Passion 2027 – Young Adults Conference site
+# LAMP (Long After Midnight Passes) – Young Adults Conference site
 
 A static website (plain HTML + CSS, no build step) hosted on GitHub Pages.
-Dates: Dec 29–31, 2026 and Feb 5–6, 2027.
+Dates: Jan 1–2, 2027.
 
 ## Pages
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Home: dates, what to expect, speaker preview |
+| `index.html` | Home: date, what to expect, speaker preview |
 | `speakers.html` | Speaker bios and photos |
 | `schedule.html` | Schedule, sessions, labs |
 | `register.html` | Registration form (embedded) plus room/payment info |
@@ -27,7 +27,7 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 
 ## To confirm with the church
 
-- [ ] Location for both events
+- [ ] Location (dates are Jan 1–2; the year 2027 was assumed, so confirm)
 - [ ] Katie's last name
 - [ ] Photo-to-speaker match (photos were matched to bios by their order in the source document; Katie = first photo, Samantha = last photo)
 - [ ] Schedule: times, sessions, labs, descriptions
@@ -35,7 +35,6 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 - [ ] Overflow hotels and whether cabins are available
 - [ ] Contact email and phone
 - [ ] Registration form link
-- [ ] Is "Passion 2027" the final event name?
 
 ## Before launch
 
