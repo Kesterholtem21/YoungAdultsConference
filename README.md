@@ -14,11 +14,14 @@ Dates: Jan 1–2, 2027.
 | `faq.html` | FAQ and contact |
 | `css/styles.css` | All styling |
 | `assets/speakers/` | Speaker photos |
-| `js/nav.js` | Phone header: hides on scroll-down, hamburger menu toggle |
 
 ## Look & feel
 
 Ocean-and-butter light theme (navy `#08273a`, aqua `#9fe9dc`, butter `#f6d86b`). Colors and sizes are CSS variables at the top of `css/styles.css`. Fonts (DM Serif Display, Plus Jakarta Sans) load from Google Fonts.
+
+## Phone navigation
+
+On phones the top bar shows only LAMP and Register; the page links (Home, Speakers, Schedule, FAQ) are in a floating bottom tab bar (`.tabbar`, generated with each page).
 
 ## Updating styles
 
@@ -48,7 +51,3 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 
 - Remove the yellow `draft-banner` line from each page.
 - Replace or remove any remaining `TBD` markers.
-
-## Phone menu options (temporary comparison)
-
-On phones there are two menu styles. Add `?nav=burger` or `?nav=bottom` to any page URL to switch (it is remembered for that browser tab). Default is `burger`. Once one is chosen, delete the other's markup/CSS.
