@@ -3,30 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Young Adults Conference</title>
-  <style>
-    :root { --bg: #faf8f5; --fg: #222; --accent: #2f5d62; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 16px;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      text-align: center;
-    }
-    main { max-width: 32rem; }
-    h1 { font-size: clamp(2rem, 8vw, 3rem); margin: 0 0 .5rem; color: var(--accent); }
-    p { font-size: 1.15rem; line-height: 1.5; margin: 0; }
-  </style>
+  <title>Passion 2027 | Young Adults Conference</title>
+  <meta name="description" content="Passion 2027 young adults conference: Dec 29-31, 2026 and Feb 5-6, 2027.">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <main>
-    <h1>Young Adults Conference</h1>
-    <p>Details and registration are coming soon. Check back here in early December.</p>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="draft-banner">Draft: details marked <span class="tbd">TBD</span> are placeholders until the church confirms them.</div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Passion <span>2027</span></a>
+      <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="speakers.html">Speakers</a><a href="schedule.html">Schedule</a><a href="faq.html">FAQ</a><a class="cta" href="register.html">Register</a></nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Young Adults Conference</p>
+        <h1>Passion 2027</h1>
+        <p class="dates"><span>Dec 29&ndash;31, 2026</span>&amp;<span>Feb 5&ndash;6, 2027</span></p>
+        <p class="place">Location: <span class="tbd">TBD</span></p>
+        <div class="hero-actions">
+          <a class="btn" href="register.html">Register now</a>
+          <a class="btn ghost" href="schedule.html">See the schedule</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Mark your calendar</h2>
+        <p class="lead">Two weekends of worship, teaching, and community for young adults.</p>
+        <div class="grid two">
+          <div class="card date-card">
+            <p class="big">Dec 29&ndash;31, 2026</p>
+            <p class="sub">Location: <span class="tbd">TBD</span></p>
+          </div>
+          <div class="card date-card">
+            <p class="big">Feb 5&ndash;6, 2027</p>
+            <p class="sub">Location: <span class="tbd">TBD</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <h2>What to expect</h2>
+        <p class="lead">Draft wording: the church will confirm what goes here.</p>
+        <div class="grid three">
+          <div class="card"><h3>Worship</h3><p>Time together in worship and prayer.</p></div>
+          <div class="card"><h3>Sessions &amp; labs</h3><p>Teaching sessions, plus labs you can choose when you register.</p></div>
+          <div class="card"><h3>Community</h3><p>Meet other young adults and make connections that last past the weekend.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Meet our speakers</h2>
+        <p class="lead">Hear from leaders who are passionate about helping young adults grow in their faith.</p>
+        <div class="grid tiles">
+          <a class="speaker-tile" href="speakers.html#katie"><img src="assets/speakers/katie.jpg" alt="Portrait of Katie" width="480" height="640" loading="lazy"><strong>Katie</strong><span>Worship Leader</span></a>
+          <a class="speaker-tile" href="speakers.html#seth"><img src="assets/speakers/seth.jpg" alt="Portrait of Seth Smart" width="480" height="640" loading="lazy"><strong>Seth Smart</strong><span>Musician &amp; songwriter</span></a>
+          <a class="speaker-tile" href="speakers.html#samantha"><img src="assets/speakers/samantha.jpg" alt="Portrait of Samantha Hoover" width="480" height="640" loading="lazy"><strong>Samantha Hoover</strong><span>Youth &amp; children&rsquo;s ministry</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Ready to join us?</h2>
+        <p>Register, choose your room, and pick your labs.</p>
+        <a class="btn" href="register.html">Go to registration</a>
+      </div>
+    </section>
   </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Passion 2027 &middot; Young Adults Conference</span>
+      <span>Questions? <a href="faq.html#contact">Contact us</a></span>
+    </div>
+  </footer>
 </body>
 </html>

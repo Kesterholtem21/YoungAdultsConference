@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | Passion 2027</title>
+  <meta name="description" content="Register for Passion 2027.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="draft-banner">Draft: details marked <span class="tbd">TBD</span> are placeholders until the church confirms them.</div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Passion <span>2027</span></a>
+      <nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="speakers.html">Speakers</a><a href="schedule.html">Schedule</a><a href="faq.html">FAQ</a><a class="cta" href="register.html" aria-current="page">Register</a></nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <div class="page-head"><div class="wrap">
+      <h1>Register</h1>
+      <p>Sign up, choose your room, and pick your labs.</p>
+    </div></div>
+    <section class="section">
+      <div class="wrap">
+        <div id="form-area"></div>
+        <noscript><p class="placeholder">Registration needs JavaScript. Please contact us instead: see the <a href="faq.html#contact">FAQ</a>.</p></noscript>
+      </div>
+    </section>
+    <section class="section alt">
+      <div class="wrap">
+        <h2>What the form will ask</h2>
+        <p class="lead">Have these ready when registration opens.</p>
+        <ul class="checks">
+          <li>Your name and contact info</li>
+          <li>Room type: single or double, and shared bathrooms <span class="tbd">TBD</span></li>
+          <li>Roommate request (add their name)</li>
+          <li>Accessibility needs, so we can plan for you</li>
+          <li>Dietary restrictions</li>
+          <li>Which labs you&rsquo;d like to attend</li>
+          <li>Payment for your room <span class="tbd">TBD</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <h2>Rooms &amp; payment</h2>
+        <div class="grid two">
+          <div class="card"><h3>Room options</h3><p>Single or double rooms with shared bathrooms. Prices <span class="tbd">TBD</span></p></div>
+          <div class="card"><h3>Payment</h3><p>How and when to pay for your room <span class="tbd">TBD</span></p></div>
+          <div class="card"><h3>Cancellation fee</h3><p>Policy and amount <span class="tbd">TBD</span></p></div>
+          <div class="card"><h3>If rooms fill up</h3><p>Nearby hotels, and whether cabins are available <span class="tbd">TBD</span></p></div>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Paste the registration form's share/embed URL between the quotes (Tally, Google Forms, Planning Center...).
+      // While this is empty, visitors see a "registration opens soon" message instead of a form.
+      var FORM_URL = "";
+      var area = document.getElementById("form-area");
+      if (FORM_URL) {
+        var f = document.createElement("iframe");
+        f.className = "form-frame"; f.src = FORM_URL; f.title = "Passion 2027 registration form"; f.loading = "lazy";
+        area.appendChild(f);
+      } else {
+        area.innerHTML = '<div class="placeholder"><h2>Registration opens soon</h2><p>The registration form will appear here. Check back, or see the <a href="faq.html">FAQ</a> for details.</p></div>';
+      }
+    </script>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Passion 2027 &middot; Young Adults Conference</span>
+      <span>Questions? <a href="faq.html#contact">Contact us</a></span>
+    </div>
+  </footer>
+</body>
+</html>
