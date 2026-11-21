@@ -17,7 +17,11 @@ Dates: Jan 1–2, 2027.
 
 ## Look & feel
 
-Ocean-and-butter light theme (navy `#08273a`, aqua `#9fe9dc`, butter `#f6d86b`). Colors and sizes are CSS variables at the top of `css/styles.css`. Fonts (DM Serif Display, Plus Jakarta Sans) load from Google Fonts.
+Follows the church's visual identity: **black, white and orange (`#E46600`)** with dark-to-light orange gradients, and **Red Hat Text** for everything (titles bold caps, secondary info light caps, body regular). Colors, the `--glow` gradient and the font are CSS variables at the top of `css/styles.css`. The font loads from Google Fonts.
+
+Rules of thumb: black text on orange (6.2:1 contrast), never small white text on orange (3.4:1); orange text on black uses the brighter `--orange-hot`.
+
+**Light and dark mode:** the site is intentionally dark in every setting. It declares `color-scheme: dark` (CSS and a `<meta>` tag) so phones and browsers in light mode or dark mode show the same thing, and automatic "force dark" modes don't recolor it. The embedded Google Form is the one white element; it's kept light on purpose.
 
 ## Phone navigation
 
