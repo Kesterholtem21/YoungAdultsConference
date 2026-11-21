@@ -14,7 +14,7 @@ Dates: Jan 1–2, 2027.
 | `faq.html` | FAQ and contact |
 | `css/styles.css` | All styling |
 | `assets/speakers/` | Speaker photos |
-| `js/nav.js` | Header hides on scroll-down, shows on scroll-up (phones) |
+| `js/nav.js` | Header hides on scroll-down, shows on scroll-up (phones only) |
 
 ## Look & feel
 
