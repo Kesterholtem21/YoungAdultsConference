@@ -189,8 +189,8 @@ a:hover { color: var(--ink); }
 }
 .speaker-tile:hover strong { color: var(--teal); }
 @media (min-width: 40rem) {
-  .grid.tiles { grid-template-columns: repeat(3, minmax(0, 15rem)); justify-content: center; gap: clamp(1.25rem, 4vw, 3rem); }
-  .speaker-tile img { aspect-ratio: 2 / 3; object-position: 50% 0; }
+  .grid.tiles { grid-template-columns: repeat(3, minmax(0, 19rem)); justify-content: center; gap: clamp(1.25rem, 4vw, 3rem); }
+  .speaker-tile img { aspect-ratio: 3 / 4; object-position: 50% 0; }
 }
 .center { text-align: center; }
 .lead.center { margin-left: auto; margin-right: auto; }
