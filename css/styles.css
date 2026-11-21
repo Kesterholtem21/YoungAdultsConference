@@ -249,3 +249,27 @@ details.faq .answer p { margin: 0 0 .6rem; }
   .hero::before { width: 18rem; height: 18rem; right: -7rem; bottom: -9rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---- Mobile polish ---- */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+section[id], [id].card, details.faq { scroll-margin-top: 1rem; }
+.site-footer { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+
+@media (max-width: 40rem) {
+  /* Compact banner */
+  .draft-banner { font-size: .75rem; padding: .35rem 12px; line-height: 1.3; }
+
+  /* Header: row 1 = LAMP + Register, row 2 = page links spread evenly */
+  .site-header { padding-top: .75rem; }
+  .site-header .wrap { padding: .6rem .6rem .5rem 1.25rem; gap: .35rem 0; border-radius: 28px; }
+  .site-header .wrap::after { content: ""; order: 2; flex-basis: 100%; height: 0; }
+  .brand { order: 0; flex: 1 1 auto; }
+  .nav { display: contents; }
+  .nav a { order: 3; flex: 1 1 0; text-align: center; padding: .65rem .25rem; font-size: .95rem; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .nav a.cta { order: 1; flex: 0 0 auto; padding: .6rem 1.25rem; min-height: 0; display: inline-block; }
+
+  /* Bigger tap targets for buttons and FAQ rows */
+  .btn { padding-top: .95rem; padding-bottom: .95rem; }
+  details.faq summary { padding-top: 1rem; padding-bottom: 1rem; }
+}
