@@ -15,6 +15,10 @@ Dates: Jan 1–2, 2027.
 | `css/styles.css` | All styling |
 | `assets/speakers/` | Speaker photos |
 
+## Look & feel
+
+Ocean-and-butter light theme (navy `#08273a`, aqua `#9fe9dc`, butter `#f6d86b`). Colors and sizes are CSS variables at the top of `css/styles.css`. Fonts (DM Serif Display, Plus Jakarta Sans) load from Google Fonts.
+
 ## Editing
 
 Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is a placeholder; search for `class="tbd"` to find them all. Commit and push to `main` and the site updates in about a minute.
