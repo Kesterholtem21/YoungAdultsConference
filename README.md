@@ -28,7 +28,6 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 ## To confirm with the church
 
 - [ ] Location (dates are Jan 1–2; the year 2027 was assumed, so confirm)
-- [ ] Katie's last name
 - [ ] Photo-to-speaker match (photos were matched to bios by their order in the source document; Katie = first photo, Samantha = last photo)
 - [ ] Schedule: times, sessions, labs, descriptions
 - [ ] Room options, prices, payment method, cancellation fee
