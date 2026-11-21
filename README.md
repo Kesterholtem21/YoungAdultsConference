@@ -19,6 +19,10 @@ Dates: Jan 1–2, 2027.
 
 Ocean-and-butter light theme (navy `#08273a`, aqua `#9fe9dc`, butter `#f6d86b`). Colors and sizes are CSS variables at the top of `css/styles.css`. Fonts (DM Serif Display, Plus Jakarta Sans) load from Google Fonts.
 
+## Updating styles
+
+Pages are cached by browsers for ~10 minutes. When you change `css/styles.css`, bump the `?v=` number on the stylesheet link in each HTML page so visitors get the new version immediately.
+
 ## Editing
 
 Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is a placeholder; search for `class="tbd"` to find them all. Commit and push to `main` and the site updates in about a minute.
