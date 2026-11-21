@@ -281,3 +281,14 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 @media (max-width: 40rem) {
   .speaker .photo { aspect-ratio: 4 / 5; max-height: 26rem; }
 }
+
+/* Sticky header (slides away on scroll-down on phones, see js/nav.js) */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg); padding-bottom: .5rem;
+  transition: transform .25s ease;
+}
+.site-header.is-hidden { transform: translateY(-120%); }
+@media (min-width: 40.01rem) { .site-header.is-hidden { transform: none; } }
+section[id], [id].card, details.faq { scroll-margin-top: 6rem; }
+@media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
