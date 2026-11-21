@@ -188,7 +188,16 @@ a:hover { color: var(--ink); }
   .speaker-tile span { font-size: .9rem; padding: .15rem 1rem 0; }
 }
 .speaker-tile:hover strong { color: var(--teal); }
-@media (min-width: 52rem) { .speaker-tile img { aspect-ratio: 1 / 1; object-position: 50% 15%; } }
+@media (min-width: 62rem) {
+  .grid.tiles { gap: 1.25rem; }
+  .speaker-tile {
+    display: grid; grid-template-columns: 8rem 1fr; grid-template-rows: 1fr 1fr;
+    column-gap: 1rem; padding: 0; align-items: stretch;
+  }
+  .speaker-tile img { grid-row: 1 / span 2; grid-column: 1; aspect-ratio: 2 / 3; height: 100%; margin: 0; object-position: 50% 0; }
+  .speaker-tile strong { grid-column: 2; grid-row: 1; align-self: end; padding: 0 1rem 0 0; font-size: 1.2rem; }
+  .speaker-tile span { grid-column: 2; grid-row: 2; align-self: start; padding: .2rem 1rem 0 0; font-size: .9rem; }
+}
 
 /* Schedule */
 .day { margin-bottom: 2.5rem; }
