@@ -273,3 +273,11 @@ section[id], [id].card, details.faq { scroll-margin-top: 1rem; }
   .btn { padding-top: .95rem; padding-bottom: .95rem; }
   details.faq summary { padding-top: 1rem; padding-bottom: 1rem; }
 }
+
+/* Per-photo focal points so faces stay in frame when cropped */
+img[src$="katie.jpg"] { object-position: 50% 15% !important; }
+img[src$="seth.jpg"] { object-position: 50% 68% !important; }
+img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
+@media (max-width: 40rem) {
+  .speaker .photo { aspect-ratio: 4 / 5; max-height: 26rem; }
+}
