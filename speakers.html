@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
-  <script>(function(){var d=document.documentElement;try{var m=new URLSearchParams(location.search).get("nav");if(m==="bottom"||m==="burger")sessionStorage.setItem("nav",m);d.dataset.nav=sessionStorage.getItem("nav")||"burger"}catch(e){d.dataset.nav="burger"}})();</script>
-  <link rel="stylesheet" href="css/styles.css?v=19">
+  <script>(function(){var d=document.documentElement,m=null,s=null;try{m=new URLSearchParams(location.search).get("nav")}catch(e){}if(m!=="bottom"&&m!=="burger")m=null;try{if(m)sessionStorage.setItem("nav",m);s=sessionStorage.getItem("nav")}catch(e){}d.dataset.nav=m||s||"burger"})();</script>
+  <link rel="stylesheet" href="css/styles.css?v=20">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
