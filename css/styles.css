@@ -37,6 +37,19 @@ body {
 }
 @media (hover: hover) { body { background-attachment: fixed; } }
 
+/* Scrollbar: square orange thumb on a parchment track, to match the site.
+   Chrome, Edge and Safari use the ::-webkit-scrollbar rules; Firefox uses scrollbar-color.
+   Phones keep their own thin overlay scrollbars. */
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-track { background: #efe2c8; border-left: 1px solid var(--rule); }
+::-webkit-scrollbar-thumb { background: var(--orange); border: 3px solid #efe2c8; }
+::-webkit-scrollbar-thumb:hover { background: #954300; }
+::-webkit-scrollbar-thumb:active { background: #000; }
+::-webkit-scrollbar-corner { background: #efe2c8; }
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: var(--orange) #efe2c8; }
+}
+
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--ink); text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 a:hover { text-decoration-color: var(--ink); }
@@ -94,17 +107,39 @@ h1 em, h2 em, .accent {
 /* Every block on the page is a full-width band; a thin line divides one from the next */
 main > * + * { border-top: 1px solid var(--rule); }
 
-/* Home hero: text on the left, the LAMP logo on the right, soft orange light behind it */
+/* Home hero: text on the left; the right half is a slanted black-to-orange panel with the white LAMP logo
+   and a faint, oversized lamp watermark behind it */
 .hero {
-  background: var(--band);
+  background: var(--band); position: relative; overflow: hidden;
 }
 .hero .wrap {
   display: flex; flex-wrap: wrap; align-items: center; gap: 2.5rem 4rem;
   padding-top: clamp(3rem, 8vw, 6rem); padding-bottom: clamp(3rem, 8vw, 6rem);
+  min-height: clamp(30rem, 44vw, 38rem);
 }
-.hero-text { flex: 1 1 24rem; }
-.hero-art { flex: 1 1 20rem; display: flex; justify-content: center; }
-.hero-art img { width: 100%; max-width: 624px; box-shadow: 0 20px 44px rgba(60, 30, 0, .22); }
+.hero-text { flex: 0 1 calc(50% - 3rem); position: relative; z-index: 1; }
+.hero-art {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 50%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--glow); clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+  padding: 0 1.25rem 0 4.5rem;
+}
+.hero-art::before {
+  content: ""; position: absolute; right: -18%; top: -46%; width: 95%; height: 149%;
+  background: url(../assets/brand/lamp-logo-white-cutout.png) no-repeat 0% 50% / auto 100%;
+  opacity: .07; pointer-events: none;
+}
+.hero-art img { position: relative; width: 100%; max-width: 620px; }
+@media (max-width: 52rem) {
+  .hero .wrap { min-height: 0; padding-top: 0; }
+  .hero-text { flex: 1 1 100%; }
+  .hero-art {
+    position: relative; order: -1; min-height: 15rem;
+    margin: 0 calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
+    clip-path: none; padding: 1.5rem 6%;   /* phones: straight edges, no slant */
+  }
+  .hero-art img { width: 92%; }
+}
 
 .eyebrow {
   display: inline-block; margin: 0 0 1rem;

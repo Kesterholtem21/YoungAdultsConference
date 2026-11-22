@@ -24,7 +24,7 @@ Follows the church's visual identity: **black, white and orange (`#E46600`)** on
 
 **Fonts:** **Red Hat Text** is the base font for everything (titles bold caps, secondary info light caps, body regular). **IM Fell English, italic** is the secondary accent font, used for accent words ("passes", "speakers"), subtitles, roles and small labels. Both load from Google Fonts. Colors and fonts are CSS variables at the top of `css/styles.css`.
 
-**Logos:** `assets/brand/lamp-logo.png` (home page hero) and `assets/brand/lamp-icon.png` are the originals as supplied; don't recolor or edit them. `assets/brand/lamp-icon-transparent.png` is a copy of the icon with the white background removed and the empty margins trimmed; the header and browser tab use it. The icon's artwork is black-to-orange, so put it on white or orange, not black.
+**Logos:** `assets/brand/lamp-logo.png` (home page hero) and `assets/brand/lamp-icon.png` are the originals as supplied; don't recolor or edit them. `assets/brand/lamp-icon-transparent.png` is a copy of the icon with the white background removed and the empty margins trimmed; the header and browser tab use it. The icon's artwork is black-to-orange, so put it on white or orange, not black. `assets/brand/lamp-logo-white-cutout.png` is a copy of the logo with only the white lamp and lettering (no background); the home page hero uses it on the slanted black-to-orange panel, and again as the faint oversized watermark behind it.
 
 **Photos:** speaker photos are shown in their original colors, with no filters or overlays.
 
