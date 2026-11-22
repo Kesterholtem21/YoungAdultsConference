@@ -1,5 +1,7 @@
 # LAMP (Long After Midnight Passes) – Young Adults Conference site
 
+> **Design option branch: Bento & glass.** Dark page with soft orange glows behind frosted-glass tiles, a tile-based home page and a countdown to midnight. Same content and pages as `main`; only the look differs. Not live (GitHub Pages deploys `main`).
+
 A static website (plain HTML + CSS, no build step) hosted on GitHub Pages.
 Dates: Jan 1–2, 2027.
 
