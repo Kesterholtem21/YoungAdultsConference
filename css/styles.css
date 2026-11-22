@@ -289,3 +289,85 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 .prose li { margin-bottom: .45rem; }
 .prose li::marker { color: var(--orange); }
 .prose h2[id] { scroll-margin-top: 1rem; }
+
+/* =====================================================================
+   THEME: Lamplight (branch design-lamplight)
+   Mostly black. One warm light, a beam over the title, thin orange lines.
+   ===================================================================== */
+:root { --lamp: #ff9844; --rule: rgba(255, 150, 60, .32); }
+html, body { background: #000; }
+
+/* Header: plain text bar, no pill */
+.site-header .wrap { background: transparent; border: 0; padding: .6rem .5rem .6rem 1rem; }
+.brand { letter-spacing: .28em; }
+.nav a.cta { background: transparent; border: 1.5px solid var(--orange-hot); color: var(--orange-hot); padding: .5rem 1.15rem; }
+.nav a.cta:hover { background: var(--orange); border-color: var(--orange); color: #000; }
+
+/* Hero: the lamp, its beam, and centered type */
+.hero {
+  width: 100%; max-width: none; margin: 0; border-radius: 0; background: transparent;
+  text-align: center; --lx: 50%; --ly: 38%;
+}
+.hero .wrap { max-width: var(--max); padding: clamp(1rem, 3vw, 2rem) 16px clamp(2.5rem, 6vw, 4.5rem); }
+.hero .beam {
+  position: absolute; left: 50%; top: 0; width: min(80rem, 160vw); height: 100%; transform: translateX(-50%);
+  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255, 150, 60, .62), rgba(228, 102, 0, .24) 45%, transparent 76%);
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%); pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(16rem circle at var(--lx) var(--ly), rgba(255, 170, 80, .16), transparent 70%);
+}
+.lamp-fixture {
+  position: relative; z-index: 1; width: 5.5rem; height: 1.6rem; margin: 0 auto;
+  background: var(--lamp); border-radius: 50% 50% .5rem .5rem / 100% 100% .5rem .5rem;
+  box-shadow: 0 0 60px 20px rgba(255, 150, 60, .75);
+}
+.hero { min-height: clamp(30rem, 52vw, 42rem); }
+.hero .eyebrow { background: none; color: var(--orange-hot); padding: 0; margin: 1.6rem 0 .5rem; letter-spacing: .24em; font-weight: 500; }
+.hero h1 { max-width: none; margin: 0 auto; font-size: clamp(2.3rem, 9vw, 7rem); text-shadow: 0 2px 28px rgba(0, 0, 0, .65); }
+.hero .dates { margin-top: 1.4rem; }
+.hero .dates { letter-spacing: .22em; }
+.hero .place { letter-spacing: .22em; }
+.hero-actions { justify-content: center; }
+.btn { box-shadow: 0 0 36px rgba(228, 102, 0, .45); }
+.btn.ghost { box-shadow: none; }
+
+/* Inner page headers: a glow falling from the top, centered */
+.page-head {
+  width: 100%; max-width: none; margin: 1rem 0 0; border-radius: 0; text-align: center; --lx: 50%; --ly: 0%;
+  background: radial-gradient(ellipse 70% 130% at 50% 0%, rgba(255, 150, 60, .5), rgba(228, 102, 0, .14) 52%, transparent 76%);
+}
+.page-head .wrap { max-width: var(--max); }
+.page-head p { margin-left: auto; margin-right: auto; }
+
+/* Flat, ruled content instead of boxes */
+.card, .card.aqua, .card.butter { background: transparent; border: 0; border-top: 1px solid var(--rule); border-radius: 0; padding: 1.5rem .5rem; color: var(--ink); }
+.card h3 { color: var(--orange-hot); letter-spacing: .1em; }
+.card.aqua p, .card.butter p { color: var(--soft); }
+.date-card { border-top: 3px solid var(--orange); }
+.slots { background: transparent; border: 1px solid var(--rule); border-radius: 22px; }
+.slots li { border-top-color: var(--rule); }
+details.faq { background: transparent; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; margin-bottom: 0; }
+.card.speaker { padding: 0; border-radius: 24px; }
+.speaker { background: #0a0a0a; border: 1px solid var(--rule); box-shadow: 0 0 40px rgba(228, 102, 0, .12); }
+.placeholder { background: rgba(228, 102, 0, .07); }
+
+/* Speaker tiles: portraits that glow */
+.speaker-tile { background: transparent; border: 0; border-radius: 0; padding: 0; text-align: center; }
+.speaker-tile img { border-radius: 2rem; box-shadow: 0 0 50px rgba(228, 102, 0, .3); }
+.speaker-tile strong, .speaker-tile span { text-align: center; padding: 0 .5rem; }
+.speaker-tile strong { margin-top: .85rem; }
+.speaker-tile span { color: var(--orange-hot); letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; }
+.speaker-tile:hover { }
+.speaker-tile:hover img { box-shadow: 0 0 70px rgba(255, 130, 20, .55); }
+
+/* Call-to-action band: light from above again */
+.cta-band {
+  background: radial-gradient(ellipse 80% 140% at 50% 0%, rgba(255, 150, 60, .55), rgba(228, 102, 0, .16) 55%, transparent 82%), #000;
+  border: 1px solid var(--rule);
+}
+
+.tabbar { background: rgba(10, 10, 10, .94); box-shadow: 0 8px 24px rgba(0, 0, 0, .7), 0 0 0 1px var(--rule); }
+
+@media (prefers-reduced-motion: reduce) { .hero::after { display: none; } }
