@@ -278,3 +278,14 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 @media (max-width: 40rem) {
   .speaker .photo { aspect-ratio: 4 / 5; max-height: 26rem; }
 }
+
+/* Privacy policy and other long-form text pages */
+.prose { max-width: 46rem; }
+.prose .updated { color: var(--soft); font-weight: 300; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; margin: 0 0 1.5rem; }
+.prose h2 { font-size: 1.15rem; margin: 2rem 0 .6rem; }
+.prose p, .prose li { color: var(--soft); }
+.prose strong { color: var(--ink); }
+.prose ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+.prose li { margin-bottom: .45rem; }
+.prose li::marker { color: var(--orange); }
+.prose h2[id] { scroll-margin-top: 1rem; }

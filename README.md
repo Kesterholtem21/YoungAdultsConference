@@ -12,6 +12,7 @@ Dates: Jan 1–2, 2027.
 | `schedule.html` | Schedule, sessions, labs |
 | `register.html` | Registration form (embedded) plus room/payment info |
 | `faq.html` | FAQ and contact |
+| `privacy.html` | Privacy policy (fill in the TBDs before launch) |
 | `css/styles.css` | All styling |
 | `assets/speakers/` | Speaker photos |
 
