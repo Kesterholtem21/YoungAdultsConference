@@ -37,18 +37,35 @@ body {
 }
 @media (hover: hover) { body { background-attachment: fixed; } }
 
-/* Scrollbar: square orange thumb on a parchment track, to match the site.
-   Chrome, Edge and Safari use the ::-webkit-scrollbar rules; Firefox uses scrollbar-color.
+/* Scrollbar: minimal, rounded, dark-orange gradient. On computers js/scrollbar.js draws it floating over the page
+   (transparent background) and the browser's own bar is hidden. Without that script, the browser bar below is styled instead.
    Phones keep their own thin overlay scrollbars. */
-::-webkit-scrollbar { width: 14px; height: 14px; }
-::-webkit-scrollbar-track { background: #efe2c8; border-left: 1px solid var(--rule); }
-::-webkit-scrollbar-thumb { background: var(--orange); border: 3px solid #efe2c8; }
-::-webkit-scrollbar-thumb:hover { background: #954300; }
-::-webkit-scrollbar-thumb:active { background: #000; }
-::-webkit-scrollbar-corner { background: #efe2c8; }
-@supports not selector(::-webkit-scrollbar) {
-  html { scrollbar-color: var(--orange) #efe2c8; }
+.lamp-scroll { scrollbar-width: none; }
+.lamp-scroll::-webkit-scrollbar { display: none; }
+.lamp-scrollbar {
+  position: fixed; top: 4px; right: 3px; bottom: 4px; width: 8px; z-index: 70;
+  opacity: .55; transition: opacity .3s, width .2s;
 }
+.lamp-scrollbar.is-active, .lamp-scrollbar:hover { opacity: 1; }
+.lamp-scrollbar:hover, .lamp-scrollbar.is-dragging { width: 11px; }
+.lamp-scrollbar-thumb {
+  width: 100%; border-radius: 999px; cursor: grab;
+  background: linear-gradient(180deg, #AF4F00 0%, #6F3200 55%, #2F1500 100%);
+}
+.lamp-scrollbar.is-dragging .lamp-scrollbar-thumb { cursor: grabbing; }
+
+/* Fallback (no JavaScript): the browser's own bar, same look */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #AF4F00 0%, #6F3200 55%, #2F1500 100%); border-radius: 999px;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+::-webkit-scrollbar-corner { background: transparent; }
+@supports not selector(::-webkit-scrollbar) {
+  html:not(.lamp-scroll) { scrollbar-width: thin; scrollbar-color: #6F3200 transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .lamp-scrollbar { transition: none; } }
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--ink); text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
@@ -324,20 +341,32 @@ details.faq .answer p { margin: 0 0 .6rem; }
 .prose li { margin-bottom: .35rem; }
 .prose .updated { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.15rem; }
 
-/* Call-to-action band: full-width black-to-orange gradient */
-.cta-band { background: var(--glow); color: #fff; text-align: center; }
+/* Call-to-action band ("Ready to join us?"): the parchment fades into night, deep lamplight brown */
+.cta-band {
+  background: linear-gradient(180deg, rgba(248, 239, 221, 0) 0%, rgba(175, 79, 0, .35) 16%, #2F1500 42%, #1c0b02 100%);
+  color: #fff; text-align: center;
+}
 main > .cta-band { border-top: 0; }
-.cta-band .wrap { padding-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.cta-band .wrap { padding-top: clamp(6rem, 12vw, 9rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
 .cta-band h2 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 4.5vw, 3rem); line-height: 1.05; }
-.cta-band p { margin: 0 auto 1.75rem; max-width: 36rem; color: #fff; font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.35; }
-.cta-band .btn { background: #fff; border-color: #fff; color: #000; }
-.cta-band .btn:hover { background: #000; border-color: #000; color: #fff; }
+.cta-band p { margin: 0 auto 1.75rem; max-width: 36rem; color: #F8EFDD; font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.35; }
+.cta-band .btn { background: var(--orange); border-color: var(--orange); color: #000; }
+.cta-band .btn:hover { background: #fff; border-color: #fff; color: #000; }
 
-/* Footer: full-width orange band */
-.site-footer { background: #c65a01; color: white; padding: 2.25rem 0 2.5rem; font-size: .95rem; font-weight: 500;}
-.site-footer a { color: black; font-weight: 700; text-decoration: none; padding-left: 5px;}
-.site-footer a:hover { color: #fff; text-decoration-color: #fff; }
-.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+/* Footer: the night continues. On pages without the band above, the footer does its own short fade from the parchment */
+.site-footer {
+  position: relative; color: rgba(248, 239, 221, .65); font-size: .9rem; font-weight: 500;
+  padding: 4.5rem 0 2.5rem;
+  background: linear-gradient(180deg, rgba(248, 239, 221, 0) 0%, rgba(175, 79, 0, .3) 20%, #2F1500 50%, #1c0b02 100%);
+}
+body:has(.cta-band) .site-footer { background: #1c0b02; padding-top: 2.25rem; }
+body:has(.cta-band) .site-footer::before {   /* faint line between the band and the footer, fading out at both ends */
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(248, 239, 221, 0), rgba(248, 239, 221, .18), rgba(248, 239, 221, 0));
+}
+.site-footer a { color: #F8EFDD; font-weight: 700; text-decoration: none; padding-left: 5px; }
+.site-footer a:hover { color: var(--orange); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 2rem; }
 .footer-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -407,6 +436,17 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
   background: transparent; border-bottom-color: transparent;
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
+/* Header after you scroll past the top photo: deep lamplight brown that fades away to transparent just below it */
+.js .photo-top .site-header.is-solid {
+  background: linear-gradient(180deg, rgba(28, 11, 2, .97) 0%, rgba(28, 11, 2, .88) 100%);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);   /* softens anything passing behind the bar */
+}
+.photo-top .site-header::after {   /* the fade under the bar */
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 2.75rem; pointer-events: none;
+    background: linear-gradient(180deg, rgba(28, 11, 2, .5) 0%, rgba(28, 11, 2, .15) 45%, rgba(28, 11, 2, 0) 100%);
+  opacity: 0; transition: opacity .3s;
+}
+.js .photo-top .site-header.is-solid::after { opacity: 1; }
 .home .hero .wrap {   /* room for the floating header, then a compact hero */
   padding-top: calc(5rem + clamp(.5rem, 1.5vw, 1rem)); padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
   min-height: clamp(20rem, 30vw, 27rem);
