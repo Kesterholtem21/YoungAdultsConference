@@ -12,21 +12,27 @@ Dates: Jan 1–2, 2027.
 | `schedule.html` | Schedule, sessions, labs |
 | `register.html` | Registration form (embedded) plus room/payment info |
 | `faq.html` | FAQ and contact |
-| `privacy.html` | Privacy policy (fill in the TBDs before launch) |
+| `privacy.html` | Privacy policy (linked in every footer) |
 | `css/styles.css` | All styling |
 | `assets/speakers/` | Speaker photos |
 
 ## Look & feel
 
-Follows the church's visual identity: **black, white and orange (`#E46600`)** with dark-to-light orange gradients, and **Red Hat Text** for everything (titles bold caps, secondary info light caps, body regular). Colors, the `--glow` gradient and the font are CSS variables at the top of `css/styles.css`. The font loads from Google Fonts.
+Follows the church's visual identity: **black, white and orange (`#E46600`)** on an **old-world parchment background** (warm ivory with faint fibers and soft amber edges, drawn in CSS, so there is no image file). Text is black with orange accents. The black-to-orange gradient (`--glow`) is used only for the "Ready to join us?" band and the short bar under each page title.
 
-Rules of thumb: black text on orange (6.2:1 contrast), never small white text on orange (3.4:1); orange text on black uses the brighter `--orange-hot`.
+**Layout:** every section is a full-width band (edge to edge), separated from the next by a thin divider line. Corners are square: no rounded boxes. Content lines up on one width (`--max`, 80rem) with side padding (`--gutter`).
 
-**Light and dark mode:** the site is intentionally dark in every setting. It declares `color-scheme: dark` (CSS and a `<meta>` tag) so phones and browsers in light mode or dark mode show the same thing, and automatic "force dark" modes don't recolor it. The embedded Google Form is the one white element; it's kept light on purpose.
+**Fonts:** **Red Hat Text** is the base font for everything (titles bold caps, secondary info light caps, body regular). **IM Fell English, italic** is the secondary accent font, used for accent words ("passes", "speakers"), subtitles, roles and small labels. Both load from Google Fonts. Colors and fonts are CSS variables at the top of `css/styles.css`.
 
-## Phone navigation
+**Logos:** `assets/brand/lamp-logo.png` (home page hero) and `assets/brand/lamp-icon.png` are the originals as supplied; don't recolor or edit them. `assets/brand/lamp-icon-transparent.png` is a copy of the icon with the white background removed and the empty margins trimmed; the header and browser tab use it. The icon's artwork is black-to-orange, so put it on white or orange, not black. `assets/brand/lamp-logo-white-cutout.png` is a copy of the logo with only the white lamp and lettering (no background); the home page hero uses it on the slanted black-to-orange panel, and again as the faint oversized watermark behind it.
 
-On phones the top bar shows only LAMP and Register; the page links (Home, Speakers, Schedule, FAQ) are in a floating bottom tab bar (`.tabbar`, generated with each page).
+**Photos:** speaker photos are shown in their original colors, with no filters or overlays.
+
+Contrast rules of thumb: black text on orange (6.2:1). Orange *text* on white only at 24px and up (3.4:1); smaller text stays black.
+
+## Cookies
+
+The site sets no cookies and has no analytics, so it does not need a cookie banner or a separate cookie policy; the Cookies section in `privacy.html` covers it. Revisit this if you add Google Analytics, a Facebook/Meta pixel, YouTube or Instagram embeds, or a registration form provider that sets tracking cookies: those would need the policy updated and, for EU visitors, a consent banner. Self-hosting the two fonts (instead of loading them from Google Fonts) would also remove the last third-party request.
 
 ## Updating styles
 
@@ -51,6 +57,7 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 - [ ] Overflow hotels and whether cabins are available
 - [ ] Contact email and phone
 - [ ] Registration form link
+- [ ] Privacy policy blanks: host church, form and payment provider, how long registrations are kept, age requirement, contact, "Last updated" date. Have the church (or its lawyer) review the policy before launch; it is a plain-language starting point, not legal advice.
 
 ## Before launch
 
