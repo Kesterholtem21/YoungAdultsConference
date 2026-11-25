@@ -7,7 +7,7 @@
   --parchment: #f8efdd;                       /* base parchment color */
   --ink: #000000;
   --white: #ffffff;
-  --orange: #e46600;                          /* official orange. With black text: 6.2:1. As text on parchment only at 24px+ */
+  --orange: #D97706;                          /* official orange. With black text: 6.2:1. As text on parchment only at 24px+ */
   --soft: rgba(0, 0, 0, .74);                 /* secondary text */
   --rule: rgba(0, 0, 0, .16);                 /* divider lines */
   --band: rgba(196, 120, 40, .09);            /* slightly deeper parchment for alternate bands (texture shows through) */
@@ -37,18 +37,35 @@ body {
 }
 @media (hover: hover) { body { background-attachment: fixed; } }
 
-/* Scrollbar: square orange thumb on a parchment track, to match the site.
-   Chrome, Edge and Safari use the ::-webkit-scrollbar rules; Firefox uses scrollbar-color.
+/* Scrollbar: minimal, rounded, dark-orange gradient. On computers js/scrollbar.js draws it floating over the page
+   (transparent background) and the browser's own bar is hidden. Without that script, the browser bar below is styled instead.
    Phones keep their own thin overlay scrollbars. */
-::-webkit-scrollbar { width: 14px; height: 14px; }
-::-webkit-scrollbar-track { background: #efe2c8; border-left: 1px solid var(--rule); }
-::-webkit-scrollbar-thumb { background: var(--orange); border: 3px solid #efe2c8; }
-::-webkit-scrollbar-thumb:hover { background: #954300; }
-::-webkit-scrollbar-thumb:active { background: #000; }
-::-webkit-scrollbar-corner { background: #efe2c8; }
-@supports not selector(::-webkit-scrollbar) {
-  html { scrollbar-color: var(--orange) #efe2c8; }
+.lamp-scroll { scrollbar-width: none; }
+.lamp-scroll::-webkit-scrollbar { display: none; }
+.lamp-scrollbar {
+  position: fixed; top: 4px; right: 3px; bottom: 4px; width: 8px; z-index: 70;
+  opacity: .55; transition: opacity .3s, width .2s;
 }
+.lamp-scrollbar.is-active, .lamp-scrollbar:hover { opacity: 1; }
+.lamp-scrollbar:hover, .lamp-scrollbar.is-dragging { width: 11px; }
+.lamp-scrollbar-thumb {
+  width: 100%; border-radius: 999px; cursor: grab;
+  background: linear-gradient(180deg, #AF4F00 0%, #6F3200 55%, #2F1500 100%);
+}
+.lamp-scrollbar.is-dragging .lamp-scrollbar-thumb { cursor: grabbing; }
+
+/* Fallback (no JavaScript): the browser's own bar, same look */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #AF4F00 0%, #6F3200 55%, #2F1500 100%); border-radius: 999px;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+::-webkit-scrollbar-corner { background: transparent; }
+@supports not selector(::-webkit-scrollbar) {
+  html:not(.lamp-scroll) { scrollbar-width: thin; scrollbar-color: #6F3200 transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .lamp-scrollbar { transition: none; } }
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--ink); text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
@@ -71,38 +88,45 @@ h1 em, h2 em, .accent {
 /* One content width for every section; backgrounds and dividers run edge to edge */
 .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 
-/* Draft banner: delete the <div class="draft-banner"> on each page at launch */
-.draft-banner {
-  background: #F6D86B; color: #000; text-align: center;
-  font-size: .875rem; padding: .45rem 16px; font-weight: 700;
-}
-
 /* Header: full-width bar with a divider underneath. It stays pinned to the top while the page scrolls. */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  border-bottom: 1px solid var(--rule);
-  background: rgba(248, 239, 221, .94);
+  background:
+  radial-gradient(30% 55% at 100% 0%, rgba(255,166,92,.45) 0%, rgba(255,140,60,.15) 45%, rgba(255,140,60,0) 75%),
+  linear-gradient(74deg, #000000 8%, #2F1500 22%, #6F3200 42%, #AF4F00 62%, #E46600 82%, #F07000 100%);
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+ 
 }
 .site-header .wrap {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: .5rem 1.5rem; padding-top: .6rem; padding-bottom: .6rem;
 }
 .brand { display: flex; align-items: center; text-decoration: none; }
-.brand img { height: 56px; width: auto; }
+.brand img { height: 56px; width: auto; color: var(--par); }
 .nav { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; align-items: center; }
 .nav a {
-  color: var(--ink); text-decoration: none; padding: .5rem 0;
+  color: var(--parchment); text-decoration: none; padding: .5rem 0;
   font-size: .9rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
   border-bottom: 2px solid transparent;
 }
-.nav a:hover { border-bottom-color: var(--ink); }
+.nav a:hover { border-bottom-color: #ffe7b6; }
 .nav a[aria-current="page"] { font-weight: 700; border-bottom-color: var(--orange); }
 .nav a.cta {
   background: var(--orange); color: #000; font-weight: 700; padding: .7rem 1.4rem;
-  border: 2px solid var(--orange); margin-left: .25rem;
+  border: 2px solid var(--orange); margin-left: .25rem; border-radius: 15px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35), 0 2px 10px rgba(0, 0, 0, .3);   /* keeps the orange crisp on the orange header */
 }
-.nav a.cta:hover { background: #000; border-color: #000; color: #fff; }
+.nav a.cta:hover { background: #000; border-color: var(--orange); color: #fff; }
+
+/* Header layout on tablets and computers: logo on the left, page links centered, Register on the right */
+@media (min-width: 40.01rem) {
+  .site-header .wrap { display: grid; grid-template-columns: 1fr repeat(4, auto) 1fr; column-gap: 1.75rem; align-items: center; }
+  .site-header .nav { display: contents; }
+  /* the header bar spans the full screen width, so the logo and Register sit close to the screen edges */
+  .site-header .wrap { max-width: none; padding-left: clamp(10px, 1vw, 16px); padding-right: clamp(10px, 1vw, 16px); }
+  .site-header .brand { grid-column: 1; justify-self: start; }
+  .site-header .nav a.cta { grid-column: 6; justify-self: end; margin-left: 0; }
+}
 
 /* Every block on the page is a full-width band; a thin line divides one from the next */
 main > * + * { border-top: 1px solid var(--rule); }
@@ -110,7 +134,16 @@ main > * + * { border-top: 1px solid var(--rule); }
 /* Home hero: text on the left; the right half is a slanted black-to-orange panel with the white LAMP logo
    and a faint, oversized lamp watermark behind it */
 .hero {
-  background: var(--band); position: relative; overflow: hidden;
+  background:
+  radial-gradient(30% 55% at 100% 0%, rgba(255,166,92,.45) 0%, rgba(255,140,60,.15) 45%, rgba(255,140,60,0) 75%),
+  linear-gradient(74deg, #000000 8%, #2F1500 22%, #6F3200 42%, #AF4F00 62%, #E46600 82%, #F07000 100%);
+  position: relative; overflow: hidden; isolation: isolate;
+}
+/* Film grain over the whole hero, letters included (drawn in code, no image file) */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  opacity: .25; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .hero .wrap {
   display: flex; flex-wrap: wrap; align-items: center; gap: 2.5rem 4rem;
@@ -119,17 +152,19 @@ main > * + * { border-top: 1px solid var(--rule); }
 }
 .hero-text { flex: 0 1 calc(50% - 3rem); position: relative; z-index: 1; }
 .hero-art {
-  position: absolute; top: 0; right: 0; bottom: 0; width: 50%; overflow: hidden;
+  position: absolute; top: 0; right: 0; bottom: 0; width: 100%; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  background: var(--glow); clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
-  padding: 0 1.25rem 0 4.5rem;
+  background:
+  radial-gradient(30% 55% at 100% 0%, rgba(255,166,92,.45) 0%, rgba(255,140,60,.15) 45%, rgba(255,140,60,0) 75%),
+  linear-gradient(74deg, #000000 8%, #2F1500 22%, #6F3200 42%, #AF4F00 62%, #E46600 82%, #F07000 100%);
+  padding: 0 clamp(1.5rem, 5vw, 5rem) 0 52%;   /* logo sits in the right half, clear of the title */
 }
 .hero-art::before {
-  content: ""; position: absolute; right: -18%; top: -46%; width: 95%; height: 149%;
+  content: ""; position: absolute; right: -45%; top: -50%; width: 95%; height: 149%;
   background: url(../assets/brand/lamp-logo-white-cutout.png) no-repeat 0% 50% / auto 100%;
   opacity: .07; pointer-events: none;
 }
-.hero-art img { position: relative; width: 100%; max-width: 620px; }
+.hero-art img { position: relative; width: 100%; max-width: 560px; }
 @media (max-width: 52rem) {
   .hero .wrap { min-height: 0; padding-top: 0; }
   .hero-text { flex: 1 1 100%; }
@@ -137,25 +172,41 @@ main > * + * { border-top: 1px solid var(--rule); }
     position: relative; order: -1; min-height: 15rem;
     margin: 0 calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
     clip-path: none; padding: 1.5rem 6%;   /* phones: straight edges, no slant */
+    background: transparent;               /* the hero itself carries the gradient */
   }
   .hero-art img { width: 92%; }
 }
 
 .eyebrow {
   display: inline-block; margin: 0 0 1rem;
-  font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--ink);
+  font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--parchment);
 }
 .hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.6rem); line-height: 1; letter-spacing: .02em; margin: 0; }
+
+/* Stacked LAMP title: white first letters spell LAMP, the rest of each word glows amber */
+.hero h1.lamp-stack {
+  font-size: clamp(2.35rem, 5.2vw, 4.6rem); line-height: 1.05; letter-spacing: .01em;
+  width: max-content; max-width: 100%;
+  background: linear-gradient(90deg, #ea8a18 0%, #f4961e 35%, #fca525 65%, #ffb234 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.hero h1.lamp-stack span { display: block; }
+.hero h1.lamp-stack b { font-weight: 700; color: #fff; -webkit-text-fill-color: #fff; }
 .hero h1 em { display: block; font-size: 1.15em; line-height: .95; margin-top: .1em; }
+.hero .Additional-Text {color: var(--parchment); font-weight: 700; margin: 0; letter-spacing: .14em; text-transform: uppercase; padding-top: 5px;}
 .hero .dates, .hero .place { margin: 0; letter-spacing: .14em; text-transform: uppercase; }
-.hero .dates { font-size: clamp(1rem, 2.5vw, 1.25rem); margin-top: 1.5rem; font-weight: 500; }
-.hero .place { font-size: clamp(.9rem, 2.5vw, 1.05rem); margin-top: .2rem; font-weight: 300; }
+.hero .dates { color: var(--parchment); font-size: clamp(1rem, 2.5vw, 1.25rem); margin-top: 1.5rem; font-weight: 500; }
+.hero .place { color: var(--parchment); font-size: clamp(.9rem, 2.5vw, 1.05rem); margin-top: .2rem; font-weight: 300; }
 .hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .85rem; }
 
 /* Inner page titles: a full-width band with a short black-to-orange brand bar */
 .page-head { background: var(--band); }
 .page-head .wrap { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); }
-.page-head .wrap::after { content: ""; display: block; width: 45rem; height: 5px; background: var(--glow); margin-top: 1.25rem; }
+.page-head .wrap::after {
+  content: ""; display: block; width: 45rem; max-width: 100%; height: 5px; margin-top: 1.25rem;
+  background: linear-gradient(90deg, var(--parchment) 0%, rgba(248, 239, 221, .55) 55%, rgba(248, 239, 221, 0) 100%); border-radius: 15px;
+}
 .page-head h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 0 0 .4rem; line-height: 1; }
 .page-head p { margin: 0; max-width: 42rem; font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.5rem); line-height: 1.35; }
 
@@ -164,11 +215,11 @@ main > * + * { border-top: 1px solid var(--rule); }
   display: inline-flex; align-items: center; justify-content: center; min-height: 50px;
   text-decoration: none; font-weight: 700; padding: .75rem 1.75rem;
   border: 2px solid var(--orange); background: var(--orange); color: #000;
-  font-size: .95rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+  font-size: .95rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; border-radius: 15px;
 }
 .btn:hover { background: #000; border-color: #000; color: #fff; }
-.btn.ghost { background: transparent; border-color: #000; color: #000; }
-.btn.ghost:hover { background: #000; color: #fff; }
+.btn.ghost { background: #efe2c8; border-color: #efe2c8; color: black; }
+.btn.ghost:hover { background: black; color: var(--parchment); border-color: black; }
 
 /* Sections */
 .section .wrap { padding-top: var(--space); padding-bottom: var(--space); }
@@ -217,7 +268,7 @@ main > * + * { border-top: 1px solid var(--rule); }
 /* Speakers page: photo beside the bio, each speaker split by a divider */
 .speaker { display: grid; align-items: start; padding: 0; }
 .speaker + .speaker { border-top: 1px solid var(--rule); margin-top: 2.5rem; padding-top: 2.5rem; }
-.speaker .photo { width: 100%; aspect-ratio: 3 / 4; max-height: 28rem; object-fit: cover; object-position: top; }
+.speaker .photo { width: 100%; aspect-ratio: 3 / 4; max-height: 28rem; object-fit: cover; object-position: top; border-radius: 15px;}
 .speaker > div { padding: 1.4rem 0 0; }
 .speaker h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); }
 .speaker .role { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.2rem; line-height: 1.35; margin: .35rem 0 1rem; }
@@ -231,7 +282,7 @@ main > * + * { border-top: 1px solid var(--rule); }
 /* Home speaker tiles: photo, then name and role, no box */
 .grid.tiles { grid-template-columns: repeat(3, 1fr); gap: .9rem; border: 0; }
 .speaker-tile { display: block; text-decoration: none; color: var(--ink); }
-.speaker-tile img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; margin-bottom: .9rem; }
+.speaker-tile img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; margin-bottom: .9rem; border-radius: 15px;}
 .speaker-tile strong { display: block; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; font-size: .85rem; line-height: 1.2; padding-top: .7rem; border-top: 2px solid var(--ink); }
 .speaker-tile span { display: block; font-family: var(--serif); font-style: italic; color: var(--soft); font-size: .95rem; line-height: 1.3; padding-top: .2rem; }
 .speaker-tile:hover strong { text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
@@ -290,20 +341,32 @@ details.faq .answer p { margin: 0 0 .6rem; }
 .prose li { margin-bottom: .35rem; }
 .prose .updated { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.15rem; }
 
-/* Call-to-action band: full-width black-to-orange gradient */
-.cta-band { background: var(--glow); color: #fff; text-align: center; }
+/* Call-to-action band ("Ready to join us?"): the parchment fades into night, deep lamplight brown */
+.cta-band {
+  background: linear-gradient(180deg, rgba(248, 239, 221, 0) 0%, rgba(175, 79, 0, .35) 16%, #2F1500 42%, #1c0b02 100%);
+  color: #fff; text-align: center;
+}
 main > .cta-band { border-top: 0; }
-.cta-band .wrap { padding-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.cta-band .wrap { padding-top: clamp(6rem, 12vw, 9rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
 .cta-band h2 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 4.5vw, 3rem); line-height: 1.05; }
-.cta-band p { margin: 0 auto 1.75rem; max-width: 36rem; color: #fff; font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.35; }
-.cta-band .btn { background: #fff; border-color: #fff; color: #000; }
-.cta-band .btn:hover { background: #000; border-color: #000; color: #fff; }
+.cta-band p { margin: 0 auto 1.75rem; max-width: 36rem; color: #F8EFDD; font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.35; }
+.cta-band .btn { background: var(--orange); border-color: var(--orange); color: #000; }
+.cta-band .btn:hover { background: #fff; border-color: #fff; color: #000; }
 
-/* Footer: full-width orange band */
-.site-footer { background: var(--orange); color: #000; padding: 2.25rem 0 2.5rem; font-size: .95rem; }
-.site-footer a { color: #000; font-weight: 700; text-decoration-color: #000; }
-.site-footer a:hover { color: #fff; text-decoration-color: #fff; }
-.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+/* Footer: the night continues. On pages without the band above, the footer does its own short fade from the parchment */
+.site-footer {
+  position: relative; color: rgba(248, 239, 221, .65); font-size: .9rem; font-weight: 500;
+  padding: 4.5rem 0 2.5rem;
+  background: linear-gradient(180deg, rgba(248, 239, 221, 0) 0%, rgba(175, 79, 0, .3) 20%, #2F1500 50%, #1c0b02 100%);
+}
+body:has(.cta-band) .site-footer { background: #1c0b02; padding-top: 2.25rem; }
+body:has(.cta-band) .site-footer::before {   /* faint line between the band and the footer, fading out at both ends */
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(248, 239, 221, 0), rgba(248, 239, 221, .18), rgba(248, 239, 221, 0));
+}
+.site-footer a { color: #F8EFDD; font-weight: 700; text-decoration: none; padding-left: 5px; }
+.site-footer a:hover { color: var(--orange); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 2rem; }
 .footer-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -340,6 +403,138 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
 
   .btn { min-height: 52px; }
   .speaker-tile span { font-size: .85rem; }
+}
+
+/* ---- Hero photo background: the clay oil lamp (assets/images/lamp-background.png) ----
+   Desktop: the photo fills the hero, the lamp shows on the left, and the stacked title sits on the right,
+   over a soft darkening so the amber letters stay readable. Phones: the photo sits above the title. */
+.hero { background: linear-gradient(180deg, #1c0b02 0%, #2e1505 100%); }
+.hero::after { opacity: .15; }
+.hero .wrap { justify-content: flex-start; }   /* title and buttons on the left */
+.hero-art {
+  background: #1c0b02 url(../assets/images/lamp-background.png) 28% 50% / cover no-repeat;
+  padding: 0;
+  transform: scaleX(-1);   /* shows the photo mirrored, so the lamp sits on the right and the text on the left (the file is unchanged) */
+}
+.hero-art::before {   /* darkens the right side behind the title; the lamp stays bright */
+  content: ""; inset: 0; top: 0; right: 0; width: auto; height: auto; opacity: 1;
+  background: linear-gradient(90deg, rgba(20, 8, 1, 0) 30%, rgba(20, 8, 1, .55) 55%, rgba(20, 8, 1, .62) 100%);
+}
+.hero-art img { display: none; }   /* the photo and the stacked title replace the logo here */
+.hero .tbd { color: #fff; border-color: #fff; background: rgba(0, 0, 0, .3); }
+@media (max-width: 52rem) {
+  .hero .wrap { justify-content: flex-start; }
+  .hero-art { min-height: 16rem; background: #1c0b02 url(../assets/images/lamp-background.png) 22% 60% / cover no-repeat; }
+  .hero-art::before { background: linear-gradient(180deg, rgba(20, 8, 1, 0) 60%, rgba(28, 11, 2, 1) 100%); }
+}
+
+/* ---- One background for the header and the top section (home hero and the page titles on every other page) ----
+   The header floats over the hero photo (see-through) and gets its gradient back once you scroll past the photo.
+   Without JavaScript it simply keeps its gradient. */
+.photo-top .site-header { position: fixed; top: 0; left: 0; right: 0; transition: background-color .3s, border-color .3s; }
+.js .photo-top .site-header:not(.is-solid) {
+  background: transparent; border-bottom-color: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+/* Header after you scroll past the top photo: deep lamplight brown that fades away to transparent just below it */
+.js .photo-top .site-header.is-solid {
+  background: linear-gradient(180deg, rgba(28, 11, 2, .97) 0%, rgba(28, 11, 2, .88) 100%);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);   /* softens anything passing behind the bar */
+}
+.photo-top .site-header::after {   /* the fade under the bar */
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 1.25rem; pointer-events: none;
+  background: linear-gradient(180deg, rgba(28, 11, 2, .5) 0%, rgba(28, 11, 2, .15) 45%, rgba(28, 11, 2, 0) 100%);
+  opacity: 0; transition: opacity .3s;
+}
+.js .photo-top .site-header.is-solid::after { opacity: 1; }
+.home .hero .wrap {   /* room for the floating header, then a compact hero */
+  padding-top: calc(5rem + clamp(.5rem, 1.5vw, 1rem)); padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+  min-height: clamp(20rem, 30vw, 27rem);
+}
+.home .hero .eyebrow { margin-bottom: .6rem; }
+.home .hero .dates { margin-top: 1rem; }
+.home .hero-actions { margin-top: 1.4rem; }
+@media (max-width: 52rem) {
+  .home .hero .wrap { padding-top: 0; }
+  .home .hero .wrap { padding-bottom: 1.5rem; }
+  .home .hero-art { min-height: 12.5rem; background-position: 22% 70%; }   /* photo reaches up behind the header */
+}
+
+/* ---- Page titles on the other pages: same look as the home hero ----
+   The lamp photo (mirrored so the lamp sits on the right), darkened behind the text, with the header floating over it.
+   The title's first letter is white and the rest glows amber, like the stacked LAMP title. */
+.photo-top .page-head { position: relative; overflow: hidden; isolation: isolate; background: #1c0b02; color: #F8EFDD; }
+.photo-top .page-head::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: url(../assets/images/lamp-background.png) 28% 55% / cover no-repeat;
+  transform: scaleX(-1);
+}
+.photo-top .page-head::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(20, 8, 1, .66) 0%, rgba(20, 8, 1, .58) 45%, rgba(20, 8, 1, .1) 75%, rgba(20, 8, 1, 0) 100%);
+}
+.photo-top .page-head .wrap { padding-top: calc(5rem + clamp(1.5rem, 4vw, 3rem)); padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+.photo-top .page-head h1 {
+  width: max-content; max-width: 100%;
+  background: linear-gradient(90deg, #ea8a18 0%, #f4961e 35%, #fca525 65%, #ffb234 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+}
+.photo-top .page-head h1 b { font-weight: inherit; color: #fff; -webkit-text-fill-color: #fff; }   /* white first letter */
+.photo-top .page-head p { color: #F8EFDD; }
+.photo-top main > .section:first-of-type, .photo-top .page-head + .section { border-top: 0; }
+@media (max-width: 40rem) {
+  .photo-top .page-head .wrap { padding-top: calc(4.5rem + 1.5rem); }
+  .photo-top .page-head::after { background: linear-gradient(90deg, rgba(20, 8, 1, .7) 0%, rgba(20, 8, 1, .55) 60%, rgba(20, 8, 1, .2) 100%); }
+}
+
+/* ---- Candle light over the hero photo (an extra animation layer; nothing else changes) ----
+   The script at the bottom of index.html adds this layer inside .hero: it sits over the photo and under the text,
+   and moves a warm candle glow slowly across the image. Hidden for reduced motion. */
+.hero-candle { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hero-candle span {
+  position: absolute; left: 0; top: 0; width: 34rem; height: 34rem; margin: -17rem 0 0 -17rem;
+  border-radius: 50%; will-change: transform, opacity; opacity: 0; mix-blend-mode: screen;
+  background:
+    radial-gradient(circle, rgba(255, 226, 170, .42) 0%, rgba(255, 190, 110, .26) 8%, rgba(255, 155, 65, .13) 22%, rgba(255, 130, 40, .05) 40%, rgba(255, 120, 30, 0) 60%),
+    radial-gradient(circle, rgba(255, 140, 50, .1) 0%, rgba(255, 120, 30, .04) 45%, rgba(255, 110, 20, 0) 70%);
+}
+@media (prefers-reduced-motion: reduce) { .hero-candle { display: none; } }
+
+/* ---- Countdown next to the header Register button (added by js/countdown.js) ---- */
+.nav-end { display: flex; align-items: center; gap: .75rem; }
+.countdown {
+  display: flex; flex-direction: column; justify-content: center; line-height: 1.1;
+  padding: .4rem .9rem; border-radius: 15px; color: #fff;
+  background: rgba(0, 0, 0, .38); border: 1px solid rgba(255, 231, 182, .25);
+}
+.countdown-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #ffe7b6; }
+.countdown-time { display: flex; gap: .45rem; font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.countdown-time b { font-weight: 700; }
+.countdown-time i { font-style: normal; font-weight: 500; font-size: .72em; margin-left: 1px; opacity: .8; }
+.countdown.is-live .countdown-time { font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
+@media (min-width: 40.01rem) { .site-header .nav-end { grid-column: 6; justify-self: end; } }
+@media (max-width: 40rem) {
+  .site-header .wrap { flex-wrap: nowrap; }
+  .nav-end { gap: .4rem; flex: 0 0 auto; }
+  .site-header .brand { flex-shrink: 0; }
+  .nav-end .cta { padding: .7rem 1rem; }
+  .countdown { padding: .35rem .55rem; }
+  .countdown-time { font-size: .85rem; gap: .3rem; }
+  .countdown-label { display: none; }
+  .countdown-s { display: none; }      /* phones: days, hours, minutes only */
+}
+@media (max-width: 22.5rem) { .countdown-time span:nth-child(3) { display: none; } }   /* very small phones: days and hours */
+
+/* ---- Ember drift on the header Register and the hero buttons (added by js/buttons.js) ---- */
+.has-embers { position: relative; }
+.ember {
+  position: absolute; top: 2px; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; z-index: 3;
+  background: radial-gradient(circle, #fff3c4 0%, #ffb648 45%, #ff7a12 100%);
+  box-shadow: 0 0 6px 2px rgba(255, 140, 40, .65);
+}
+.site-header .ember {   /* lighter embers so they show against the orange button */
+  background: radial-gradient(circle, #fff 0%, #ffe9b8 40%, #ffb04a 100%);
+  box-shadow: 0 0 6px 2px rgba(255, 225, 160, .75);
 }
 
 /* Per-photo focal points so faces stay in frame (the photo files themselves are unchanged) */
