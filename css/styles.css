@@ -544,3 +544,12 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 @media (max-width: 40rem) {
   .speaker .photo { aspect-ratio: 4 / 5; max-height: 26rem; }
 }
+/* ---- Effects (js/effects.js and js/countdown.js) ---- */
+.lamp-dim { filter: brightness(.5) saturate(.7); }
+.speaker .photo, .speaker-tile img { transition: filter 1.1s ease; }
+.countdown-time b { display: inline-block; }
+.countdown-time b.flip { animation: flip .45s ease; }
+@keyframes flip { 0% { transform: rotateX(90deg); opacity: 0; } 100% { transform: rotateX(0); opacity: 1; } }
+.slots li.is-now { background: rgba(228, 102, 0, .12); box-shadow: inset 4px 0 0 var(--orange); padding-left: .9rem; }
+.now-badge { display: inline-block; margin-left: .6rem; padding: .1rem .5rem; border-radius: 99px; background: var(--orange); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+@media (prefers-reduced-motion: reduce) { .countdown-time b.flip { animation: none; } .speaker .photo, .speaker-tile img { transition: none; } }
