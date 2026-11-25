@@ -31,16 +31,6 @@
   ["d", "h", "m", "s"].forEach(function (u) { out[u] = box.querySelector('[data-u="' + u + '"]'); });
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
-  // Flip a number when it changes (CSS handles the animation; reduced-motion visitors see no flip)
-  function set(u, v) {
-    var el = out[u];
-    if (el.textContent === v) return;
-    var first = el.textContent === "00" && !el.hasAttribute("data-set");
-    el.textContent = v; el.setAttribute("data-set", "1");
-    if (first) return;
-    el.classList.remove("flip"); void el.offsetWidth; el.classList.add("flip");
-  }
-
   function tick() {
     var now = Date.now();
     if (now >= EVENT_END) { slot.parentNode.insertBefore(cta, slot); slot.remove(); return; }
@@ -51,10 +41,10 @@
       return;
     }
     var left = Math.floor((EVENT_START - now) / 1000);
-    set("d", String(Math.floor(left / 86400)));
-    set("h", pad(Math.floor(left % 86400 / 3600)));
-    set("m", pad(Math.floor(left % 3600 / 60)));
-    set("s", pad(left % 60));
+    out.d.textContent = String(Math.floor(left / 86400));
+    out.h.textContent = pad(Math.floor(left % 86400 / 3600));
+    out.m.textContent = pad(Math.floor(left % 3600 / 60));
+    out.s.textContent = pad(left % 60);
     setTimeout(tick, 1000 - (now % 1000));
   }
   tick();
