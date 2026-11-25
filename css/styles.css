@@ -550,36 +550,28 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 
 /* ---- Title light-up: the big titles start dim and ignite left to right once on load ---- */
 @keyframes ignite {
-  0% { -webkit-mask-position: 100.0% 0; mask-position: 100.0% 0; background-position: 100.0% 0, 0 0; filter: drop-shadow(0 0 11px rgba(255,150,30,0.69)) drop-shadow(0 0 30px rgba(255,70,0,0.41)); }
-  5% { -webkit-mask-position: 95.0% 0; mask-position: 95.0% 0; background-position: 95.0% 0, 0 0; filter: drop-shadow(0 0 15px rgba(255,150,30,0.62)) drop-shadow(0 0 20px rgba(255,70,0,0.37)); }
-  10% { -webkit-mask-position: 90.0% 0; mask-position: 90.0% 0; background-position: 90.0% 0, 0 0; filter: drop-shadow(0 0 8px rgba(255,150,30,0.73)) drop-shadow(0 0 27px rgba(255,70,0,0.44)); }
-  15% { -webkit-mask-position: 85.0% 0; mask-position: 85.0% 0; background-position: 85.0% 0, 0 0; filter: drop-shadow(0 0 20px rgba(255,150,30,1.00)) drop-shadow(0 0 19px rgba(255,70,0,0.60)); }
-  20% { -webkit-mask-position: 80.0% 0; mask-position: 80.0% 0; background-position: 80.0% 0, 0 0; filter: drop-shadow(0 0 11px rgba(255,150,30,0.78)) drop-shadow(0 0 29px rgba(255,70,0,0.47)); }
-  25% { -webkit-mask-position: 75.0% 0; mask-position: 75.0% 0; background-position: 75.0% 0, 0 0; filter: drop-shadow(0 0 12px rgba(255,150,30,0.90)) drop-shadow(0 0 21px rgba(255,70,0,0.54)); }
-  30% { -webkit-mask-position: 70.0% 0; mask-position: 70.0% 0; background-position: 70.0% 0, 0 0; filter: drop-shadow(0 0 12px rgba(255,150,30,0.65)) drop-shadow(0 0 18px rgba(255,70,0,0.39)); }
-  35% { -webkit-mask-position: 65.0% 0; mask-position: 65.0% 0; background-position: 65.0% 0, 0 0; filter: drop-shadow(0 0 18px rgba(255,150,30,0.91)) drop-shadow(0 0 26px rgba(255,70,0,0.55)); }
-  40% { -webkit-mask-position: 60.0% 0; mask-position: 60.0% 0; background-position: 60.0% 0, 0 0; filter: drop-shadow(0 0 11px rgba(255,150,30,0.62)) drop-shadow(0 0 27px rgba(255,70,0,0.37)); }
-  45% { -webkit-mask-position: 55.0% 0; mask-position: 55.0% 0; background-position: 55.0% 0, 0 0; filter: drop-shadow(0 0 18px rgba(255,150,30,0.94)) drop-shadow(0 0 29px rgba(255,70,0,0.56)); }
-  50% { -webkit-mask-position: 50.0% 0; mask-position: 50.0% 0; background-position: 50.0% 0, 0 0; filter: drop-shadow(0 0 9px rgba(255,150,30,0.93)) drop-shadow(0 0 28px rgba(255,70,0,0.56)); }
-  55% { -webkit-mask-position: 45.0% 0; mask-position: 45.0% 0; background-position: 45.0% 0, 0 0; filter: drop-shadow(0 0 18px rgba(255,150,30,0.72)) drop-shadow(0 0 25px rgba(255,70,0,0.43)); }
-  60% { -webkit-mask-position: 40.0% 0; mask-position: 40.0% 0; background-position: 40.0% 0, 0 0; filter: drop-shadow(0 0 10px rgba(255,150,30,0.66)) drop-shadow(0 0 26px rgba(255,70,0,0.40)); }
-  65% { -webkit-mask-position: 35.0% 0; mask-position: 35.0% 0; background-position: 35.0% 0, 0 0; filter: drop-shadow(0 0 9px rgba(255,150,30,0.98)) drop-shadow(0 0 27px rgba(255,70,0,0.59)); }
-  70% { -webkit-mask-position: 30.0% 0; mask-position: 30.0% 0; background-position: 30.0% 0, 0 0; filter: drop-shadow(0 0 8px rgba(255,150,30,0.96)) drop-shadow(0 0 27px rgba(255,70,0,0.58)); }
-  75% { -webkit-mask-position: 25.0% 0; mask-position: 25.0% 0; background-position: 25.0% 0, 0 0; filter: drop-shadow(0 0 20px rgba(255,150,30,0.78)) drop-shadow(0 0 31px rgba(255,70,0,0.47)); }
-  80% { -webkit-mask-position: 20.0% 0; mask-position: 20.0% 0; background-position: 20.0% 0, 0 0; filter: drop-shadow(0 0 14px rgba(255,150,30,0.82)) drop-shadow(0 0 31px rgba(255,70,0,0.49)); }
-  85% { -webkit-mask-position: 15.0% 0; mask-position: 15.0% 0; background-position: 15.0% 0, 0 0; filter: drop-shadow(0 0 11px rgba(255,150,30,0.47)) drop-shadow(0 0 20px rgba(255,70,0,0.28)); }
-  90% { -webkit-mask-position: 10.0% 0; mask-position: 10.0% 0; background-position: 10.0% 0, 0 0; filter: drop-shadow(0 0 6px rgba(255,150,30,0.46)) drop-shadow(0 0 9px rgba(255,70,0,0.27)); }
-  95% { -webkit-mask-position: 5.0% 0; mask-position: 5.0% 0; background-position: 5.0% 0, 0 0; filter: drop-shadow(0 0 2px rgba(255,150,30,0.14)) drop-shadow(0 0 7px rgba(255,70,0,0.09)); }
-  100% { -webkit-mask-position: 0.0% 0; mask-position: 0.0% 0; background-position: 0.0% 0, 0 0; filter: drop-shadow(0 0 0 rgba(255,100,10,0)) drop-shadow(0 0 0 rgba(255,60,0,0)); }
+  0% { -webkit-mask-position: 100.0% 0; mask-position: 100.0% 0; background-position: 100.0% 0, 0 0; filter: drop-shadow(0 0 0px rgba(255,120,20,0.00)) drop-shadow(0 0 0px rgba(220,50,0,0.00)); }
+  8.3% { -webkit-mask-position: 91.7% 0; mask-position: 91.7% 0; background-position: 91.7% 0, 0 0; filter: drop-shadow(0 0 4px rgba(255,120,20,0.26)) drop-shadow(0 0 8px rgba(220,50,0,0.14)); }
+  16.7% { -webkit-mask-position: 83.3% 0; mask-position: 83.3% 0; background-position: 83.3% 0, 0 0; filter: drop-shadow(0 0 6px rgba(255,120,20,0.45)) drop-shadow(0 0 13px rgba(220,50,0,0.24)); }
+  25% { -webkit-mask-position: 75.0% 0; mask-position: 75.0% 0; background-position: 75.0% 0, 0 0; filter: drop-shadow(0 0 8px rgba(255,120,20,0.59)) drop-shadow(0 0 17px rgba(220,50,0,0.31)); }
+  33.3% { -webkit-mask-position: 66.7% 0; mask-position: 66.7% 0; background-position: 66.7% 0, 0 0; filter: drop-shadow(0 0 9px rgba(255,120,20,0.68)) drop-shadow(0 0 20px rgba(220,50,0,0.36)); }
+  41.7% { -webkit-mask-position: 58.3% 0; mask-position: 58.3% 0; background-position: 58.3% 0, 0 0; filter: drop-shadow(0 0 10px rgba(255,120,20,0.74)) drop-shadow(0 0 22px rgba(220,50,0,0.39)); }
+  50% { -webkit-mask-position: 50.0% 0; mask-position: 50.0% 0; background-position: 50.0% 0, 0 0; filter: drop-shadow(0 0 10px rgba(255,120,20,0.75)) drop-shadow(0 0 22px rgba(220,50,0,0.40)); }
+  58.3% { -webkit-mask-position: 41.7% 0; mask-position: 41.7% 0; background-position: 41.7% 0, 0 0; filter: drop-shadow(0 0 10px rgba(255,120,20,0.71)) drop-shadow(0 0 21px rgba(220,50,0,0.38)); }
+  66.7% { -webkit-mask-position: 33.3% 0; mask-position: 33.3% 0; background-position: 33.3% 0, 0 0; filter: drop-shadow(0 0 8px rgba(255,120,20,0.63)) drop-shadow(0 0 19px rgba(220,50,0,0.34)); }
+  75% { -webkit-mask-position: 25.0% 0; mask-position: 25.0% 0; background-position: 25.0% 0, 0 0; filter: drop-shadow(0 0 7px rgba(255,120,20,0.51)) drop-shadow(0 0 15px rgba(220,50,0,0.27)); }
+  83.3% { -webkit-mask-position: 16.7% 0; mask-position: 16.7% 0; background-position: 16.7% 0, 0 0; filter: drop-shadow(0 0 5px rgba(255,120,20,0.35)) drop-shadow(0 0 10px rgba(220,50,0,0.19)); }
+  91.7% { -webkit-mask-position: 8.3% 0; mask-position: 8.3% 0; background-position: 8.3% 0, 0 0; filter: drop-shadow(0 0 2px rgba(255,120,20,0.14)) drop-shadow(0 0 4px rgba(220,50,0,0.07)); }
+  100% { -webkit-mask-position: 0.0% 0; mask-position: 0.0% 0; background-position: 0.0% 0, 0 0; filter: drop-shadow(0 0 0px rgba(255,120,20,0.00)) drop-shadow(0 0 0px rgba(220,50,0,0.00)); }
 }
 .page-head h1, .hero h1.lamp-stack {
   -webkit-mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%); mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%);
   -webkit-mask-size: 250% 100%; mask-size: 250% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: 0 0; mask-position: 0 0;
-  /* a white-hot edge with a red-orange fringe rides along the front of the glow, so the title looks like it is burning across */
-  background-image: linear-gradient(90deg, transparent 34%, rgba(190, 30, 0, .75) 43%, rgba(255, 120, 10, .95) 47.5%, rgba(255, 246, 205, 1) 50.2%, rgba(255, 170, 50, .85) 53%, transparent 60%), linear-gradient(90deg, #ea8a18 0%, #f4961e 35%, #fca525 65%, #ffb234 100%);
+  /* a soft molten-orange edge moves across, like letters heating up in a fire */
+  background-image: linear-gradient(90deg, transparent 36%, rgba(200, 50, 0, .55) 45%, rgba(255, 150, 40, .85) 50%, rgba(255, 120, 20, .4) 55%, transparent 62%), linear-gradient(90deg, #ea8a18 0%, #f4961e 35%, #fca525 65%, #ffb234 100%);
   background-size: 250% 100%, 100% 100%; background-repeat: no-repeat;
-  animation: ignite 4.5s linear .3s both;   /* 4.5s = how long the burn takes; the glow flickers as it goes */
+  animation: ignite 3s ease-in-out .3s both;   /* 3s = how long the glow takes to travel across */
   /* padding gives the glow room inside the mask so it is not cut off in a box; the margins cancel the padding out */
   padding: 36px; margin: -36px -36px calc(.4rem - 36px) -36px;
   background-origin: content-box; background-clip: text; -webkit-background-clip: text;
