@@ -1,4 +1,17 @@
-/* LAMP effects: the schedule highlights what is happening right now. */
+/* LAMP effects: (1) the header photo drifts slightly as you scroll (parallax), (2) the schedule highlights what is happening right now. */
+(function () {
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var el = document.querySelector(".hero-art, .page-head");
+  if (!el) return;
+  var pending = false;
+  function update() {
+    pending = false;
+    var y = Math.min(window.scrollY, 330);   // stops drifting after 330px so the photo never runs out of room
+    el.style.setProperty("--py", (y * 0.12).toFixed(1) + "px");   // 0.12 = how fast the photo drifts; bigger = more movement
+  }
+  window.addEventListener("scroll", function () { if (!pending) { pending = true; requestAnimationFrame(update); } }, { passive: true });
+})();
+
 (function () {
   // 2. Schedule: highlight the session happening now (rows carry data-start times in Eastern)
   var rows = Array.prototype.slice.call(document.querySelectorAll(".slots li[data-start]"));

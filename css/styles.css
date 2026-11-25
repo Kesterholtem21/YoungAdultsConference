@@ -412,7 +412,7 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
 .hero::after { opacity: .15; }
 .hero .wrap { justify-content: flex-start; }   /* title and buttons on the left */
 .hero-art {
-  background: #1c0b02 url(../assets/images/lamp-background.png) 28% 50% / cover no-repeat;
+  background: #1c0b02 url(../assets/images/lamp-background.png) 28% calc(50% + var(--py, 0px)) / cover no-repeat;
   padding: 0;
   transform: scaleX(-1);   /* shows the photo mirrored, so the lamp sits on the right and the text on the left (the file is unchanged) */
 }
@@ -465,9 +465,9 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
    The title's first letter is white and the rest glows amber, like the stacked LAMP title. */
 .photo-top .page-head { position: relative; overflow: hidden; isolation: isolate; background: #1c0b02; color: #F8EFDD; }
 .photo-top .page-head::before {
-  content: ""; position: absolute; inset: 0; z-index: -2;
+  content: ""; position: absolute; inset: -3rem 0; z-index: -2;   /* extra height gives the parallax room to move */
   background: url(../assets/images/lamp-background.png) 28% 55% / cover no-repeat;
-  transform: scaleX(-1);
+  transform: scaleX(-1) translateY(var(--py, 0px));
 }
 .photo-top .page-head::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -547,3 +547,13 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 /* ---- Effects (js/effects.js and js/countdown.js) ---- */
 .slots li.is-now { background: rgba(228, 102, 0, .12); box-shadow: inset 4px 0 0 var(--orange); padding-left: .9rem; }
 .now-badge { display: inline-block; margin-left: .6rem; padding: .1rem .5rem; border-radius: 99px; background: var(--orange); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+
+/* ---- Title light-up: the big titles start dim and ignite left to right once on load ---- */
+@keyframes ignite { from { -webkit-mask-position: 100% 0; mask-position: 100% 0; } to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+.page-head h1, .hero h1.lamp-stack {
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%); mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%);
+  -webkit-mask-size: 250% 100%; mask-size: 250% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0; mask-position: 0 0;
+  animation: ignite 1.8s cubic-bezier(.3, .1, .3, 1) .25s both;
+}
+@media (prefers-reduced-motion: reduce) { .page-head h1, .hero h1.lamp-stack { animation: none; } }
