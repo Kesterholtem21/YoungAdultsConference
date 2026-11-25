@@ -412,7 +412,7 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
 .hero::after { opacity: .15; }
 .hero .wrap { justify-content: flex-start; }   /* title and buttons on the left */
 .hero-art {
-  background: #1c0b02 url(../assets/images/lamp-background.png) 28% calc(50% + var(--py, 0px)) / cover no-repeat;
+  background: #1c0b02 url(../assets/images/lamp-background.png) 28% 50% / cover no-repeat;
   padding: 0;
   transform: scaleX(-1);   /* shows the photo mirrored, so the lamp sits on the right and the text on the left (the file is unchanged) */
 }
@@ -465,9 +465,9 @@ section[id], [id].card, details.faq, [id] { scroll-margin-top: 6.5rem; }  /* kee
    The title's first letter is white and the rest glows amber, like the stacked LAMP title. */
 .photo-top .page-head { position: relative; overflow: hidden; isolation: isolate; background: #1c0b02; color: #F8EFDD; }
 .photo-top .page-head::before {
-  content: ""; position: absolute; inset: -3rem 0; z-index: -2;   /* extra height gives the parallax room to move */
+  content: ""; position: absolute; inset: 0; z-index: -2;
   background: url(../assets/images/lamp-background.png) 28% 55% / cover no-repeat;
-  transform: scaleX(-1) translateY(var(--py, 0px));
+  transform: scaleX(-1);
 }
 .photo-top .page-head::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -549,11 +549,14 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 .now-badge { display: inline-block; margin-left: .6rem; padding: .1rem .5rem; border-radius: 99px; background: var(--orange); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
 
 /* ---- Title light-up: the big titles start dim and ignite left to right once on load ---- */
-@keyframes ignite { from { -webkit-mask-position: 100% 0; mask-position: 100% 0; } to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes ignite { from { -webkit-mask-position: 100% 0; mask-position: 100% 0; background-position: 100% 0, 0 0; filter: drop-shadow(0 0 14px rgba(255, 130, 20, .9)); } to { -webkit-mask-position: 0 0; mask-position: 0 0; background-position: 0 0, 0 0; filter: drop-shadow(0 0 0 rgba(255, 130, 20, 0)); } }
 .page-head h1, .hero h1.lamp-stack {
   -webkit-mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%); mask-image: linear-gradient(90deg, #000 40%, rgba(0, 0, 0, .25) 60%);
   -webkit-mask-size: 250% 100%; mask-size: 250% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: 0 0; mask-position: 0 0;
-  animation: ignite 1.8s cubic-bezier(.3, .1, .3, 1) .25s both;
+  /* a white-hot edge rides along the front of the glow, so the title looks like it is burning across */
+  background-image: linear-gradient(90deg, transparent 43%, rgba(255, 244, 205, .95) 49%, rgba(255, 190, 90, .9) 51.5%, transparent 58%), linear-gradient(90deg, #ea8a18 0%, #f4961e 35%, #fca525 65%, #ffb234 100%);
+  background-size: 250% 100%, 100% 100%; background-repeat: no-repeat;
+  animation: ignite 2.2s cubic-bezier(.4, .1, .3, 1) .25s both;
 }
 @media (prefers-reduced-motion: reduce) { .page-head h1, .hero h1.lamp-stack { animation: none; } }
