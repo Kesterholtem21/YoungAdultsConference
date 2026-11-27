@@ -42,11 +42,17 @@ Pages are cached by browsers for ~10 minutes. When you change `css/styles.css`, 
 
 Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is a placeholder; search for `class="tbd"` to find them all. Commit and push to `main` and the site updates in about a minute.
 
-## Adding the registration form
+## Registration
 
-1. Build the form in Tally, Google Forms, or Planning Center (rooms, roommate, accessibility, dietary, labs, payment).
-2. Open `register.html`, find `var FORM_URL = "";`, and paste the form's embed URL between the quotes.
-3. Do **not** store attendee data or API keys in this repo. This repo is public-facing.
+Registration runs on Planning Center Registrations (Church Center): https://ybfree.churchcenter.com/registrations/events/4045114. The Register page (`register.html`) links out to it. If the signup link ever changes, update the button in `register.html` (search for `churchcenter.com`). Do **not** store attendee data, spreadsheets, or API keys in this repo; it is public.
+
+## Domain and security
+
+- The site is served at **https://lampconference.org** (GitHub Pages, branch `main`). The `CNAME` file in the repo root holds the domain; do not delete it. If you remove the custom domain in Settings > Pages, GitHub deletes it for you.
+- DNS lives at GoDaddy: four `A` records for `@` pointing at GitHub Pages (185.199.108.153, .109.153, .110.153, .111.153) and a `www` `CNAME` to `kesterholtem21.github.io`. Check GitHub's current values at docs.github.com ("Managing a custom domain for your GitHub Pages site") if the site ever stops resolving.
+- Keep "Enforce HTTPS" ticked in Settings > Pages.
+- Verify the domain on GitHub (profile > Settings > Pages > Add a domain, then add the TXT record at GoDaddy) so nobody else can claim it.
+- Protect the accounts: two-factor sign-in on GoDaddy and GitHub, church-owned email addresses (so a successor can recover them), domain auto-renew and lock on, and no reused passwords.
 
 ## To confirm with the church
 
@@ -56,8 +62,7 @@ Edit the HTML files directly. Anything marked `<span class="tbd">TBD</span>` is 
 - [ ] Room options, prices, payment method, cancellation fee
 - [ ] Overflow hotels and whether cabins are available
 - [ ] Contact email and phone
-- [ ] Registration form link
-- [ ] Privacy policy blanks: host church, form and payment provider, how long registrations are kept, age requirement, contact, "Last updated" date. Have the church (or its lawyer) review the policy before launch; it is a plain-language starting point, not legal advice.
+- [ ] Privacy policy blanks: host church, how long registrations are kept, contact, "Last updated" date. Have the church (or its lawyer) review the policy before launch; it is a plain-language starting point, not legal advice.
 
 ## Before launch
 
