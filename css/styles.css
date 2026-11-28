@@ -591,3 +591,11 @@ img[src$="samantha.jpg"] { object-position: 50% 12% !important; }
 }
 .hero h1.lamp-stack { margin-bottom: -36px; }
 @media (prefers-reduced-motion: reduce) { .page-head h1, .hero h1.lamp-stack { animation: none; } }
+
+/* ---- Social icons (footer and FAQ contact card) ---- */
+.site-footer .social { display: inline-flex; align-items: center; gap: 1rem; }
+.site-footer .social a { padding: 0; display: inline-flex; }
+.site-footer .social svg { transition: transform .2s; }
+.site-footer .social a:hover svg { transform: translateY(-2px); }
+.social-row { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.social-row a { display: inline-flex; align-items: center; gap: .45rem; }
